@@ -1,0 +1,86 @@
+﻿@model PagedList.IPagedList<Models.Framework.Account>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/Assets/admin/pagiing/css/paged.css">
+    <script src="/Assets/admin/pagiing/js/jquery.min.3.5.1.js"></script>
+    <script src="/Assets/admin/pagiing/js/bootstrap.min.3.4.1.js"></script>
+</head>
+
+<div class="card shadow mb-4" style="margin:0px 15px">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables and Paging Example </h6>
+    </div>
+    <div class="card-body" style="margin-bottom:0px; padding-bottom:0px">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="margin:0px; padding:0px">
+                <thead>
+                    <tr>
+                        <th>UserID</th>
+                        <th>Full Name</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Status</th>
+                        <th>###</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <th>@item.UserID</th>
+                        <th>@item.FullName</th>
+                        <th>@item.Username</th>
+                        <th>@item.Password</th>
+                        <th>@item.Status</th>
+                        <th>
+                            <a href="/Admin/ListAccount/Edit">Sửa</a>
+                            <a href="/Delete/@item.UserID">Xóa</a>
+
+                        </th>
+
+
+                    </tr>
+                    }
+                </tfoot>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+            {
+                /*Thêm một class 'pagination'  CSS vào thẻ ul, class  này trích  từ boottrap.3.4.1.
+                Tham khảo tài liệu tại website: https://www.w3schools.com/bootstrap/bootstrap_pagination.asp
+                Class này thiết kế kiểu cho pagiing...
+                */
+                UlElementClasses = new string[] { "pagination" },
+
+                /*Hiện thị số  trang tối đa trong một điều khiển phân  trang*/
+                MaximumPageNumbersToDisplay = 2,
+
+
+                /*Lớp CSS thiết kế thẻ chứa điều khiển phân trang.*/
+                ContainerDivClasses = new[] { "" },
+
+                /*Thêm một class  CSS vào thẻ li*/
+                LiElementClasses = new[] { "MyClassCss" },
+
+                /*Hiển thị trang hiện tại trong tổng số trang... Chọn true để hiện thị*/
+                DisplayPageCountAndCurrentLocation = false,
+                /*Hiển thị thiết kế riêng của trang hiện tại...*/
+                PageCountAndCurrentLocationFormat = "Trang {0} của {1}.",
+
+                /*Tham khảo một số tham số và giá trị mặc định của PagedListRenderOptions tại trang:
+                https://github.com/TroyGoode/PagedList/blob/master/src/PagedList.Mvc/PagedListRenderOptions.cs
+                */
+
+            })
+        </div>
+    </div>
+</div>
+
+
+

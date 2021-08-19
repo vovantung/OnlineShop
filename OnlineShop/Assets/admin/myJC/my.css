@@ -1,0 +1,76 @@
+/* 
+    Created on : Dec 14, 2020, 7:37:49 PM
+    Author     : Vo Van Tung
+*/
+
+/*///////////////////////////////////////////////////*/
+
+.bt2 {
+    display: block;
+    transition: width 0.2s;
+}
+.bt3 {
+    display: block;
+    transition: width 0.2s;
+}
+
+.d1{
+display:block;
+width:250px;
+transition: width 0.02s;
+}
+
+
+
+
+.bt3:hover {
+    cursor: pointer;
+}
+    
+.open-bt .bt3{
+	
+      display: inline;   
+}
+
+
+
+.st {
+    display: inline;
+    width: 190px;
+    transition: width 0.03s;
+}
+
+
+
+
+
+.input_ {
+border:0; 
+color:#333;
+margin:4px 4px; 
+}
+.input_:focus { 
+    outline: none !important;
+    border-color: transparent;
+   
+}
+
+.btt{
+    border:0;
+    background-color:inherit;
+}
+btt:focus {
+    outline: none !important;
+    border-color: inherit;
+}
+
+
+
+
+
+
+
+
+
+
+

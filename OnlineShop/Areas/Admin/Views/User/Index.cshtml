@@ -1,0 +1,148 @@
+﻿@model PagedList.IPagedList<Models.Framework.Account>
+@using PagedList.Mvc;
+@using Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutMasterVueXY.cshtml";
+}
+@section jsFooter{
+    <script src="/Assets/admin/myJC/controller/UserController.js"></script>
+    <script src="/Assets/admin/myJC/my.js"></script>
+    <link rel="stylesheet" href="/Assets/admin/pagiing/css/paged.css">
+    <link rel="stylesheet" href="/Assets/admin/myJC/my.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css">
+}
+<!-- Class .vvt-luange dùng để đặt ngôn ngữ cho thẻ hiện tại. Hàm js đặt ngôn ngữ sử dụng modul i18n được cài đặt trong tâp tin:
+    C:\Users\Vo Van Tung\Desktop\ASP.NET\OnlineShop_\OnlineShop\Assets\vuexy_theme\app-assets\js\core\app.min.js
+    Tập tin ngôn ngữ đặt ở thư mục: C:\Users\Vo Van Tung\Desktop\ASP.NET\OnlineShop_\OnlineShop\app-assets\data\locales\ của dự án.
+    -->
+<div class="vvt-luange" style="width: 100% !important; height: auto !important; z-index: 0 !important; overflow: auto">
+
+    <div class="card shadow mb-4">
+        <div style="margin: 20px  20px 0px 20px">
+            <span style="margin:0px" data-i18n="User Management">Quản trị người dùng</span>
+            <hr>
+
+
+
+
+
+            @using (Html.BeginForm("Index", "User", FormMethod.Get))
+            {
+                
+                  
+                            <div class="input-group input-group-merge" style="margin-bottom:20px; margin-top:20px">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i data-feather="search" class="text-muted"></i></span>
+                                </div>
+                                <input type="text" class="form-control" name="searchString" placeholder="Nhập  chuỗi tìm kiếm..." value="@ViewBag.searchStr" aria-label="Search..." aria-describedby="todo-search" id="todo-search" />
+                            </div>
+                       
+                 
+                
+                
+
+                <!--<div style="margin-bottom:20px; margin-top:20px">-->
+                <!--<i class=" bt1 fas fa-search" style="margin: 10px 10px;"><span style="font-size:medium"> Nhập  chuỗi tìm kiếm...</span></i>-->
+                <!--<div class="d1" style="border-width: 1px; border-style: solid; border-radius:4px; border-color:#aaa;">
+                <input type="search" class="st input_" name="searchString" placeholder="Nhập  chuỗi tìm kiếm..." value="@ViewBag.searchStr"><button type="submit" class="btt"><i class=" bt2 fas fa-search"></i></button><i style="margin-left:3px" class="bt3 fas fa-times"></i>
+                </div>
+                </div>-->
+
+            }
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <!-- Bordered table start -->
+            <div class="row" id="table-bordered">
+                <div class="col-12">
+                    <div class="card" style="margin-bottom:0px">
+                        <div class="table-responsive" style="">
+                            <table class="table table-bordered" style="margin-bottom:0px; font-family:Arial, Helvetica, 'Times New Roman'">
+                                <thead>
+                                    <tr>
+                                        <th>UserID</th>
+                                        <th>Full Name</th>
+                                        <th>Username</th>
+                                        <th>Password</th>
+                                        <th>Status</th>
+                                        <th>ModifiledDate</th>
+                                        <th>###</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr id="row_@item.UserID">
+                                            <td style="min-width:80px">@item.UserID</td>
+                                            <td style="min-width:250px">@item.FullName</td>
+                                            <td style="min-width:80px">@item.Username</td>
+                                            <td style="min-width:150px">@(new md5().Decrypt(item.Password, "TX"))</td>
+                                            <td style="min-width:120px"><a href="#" class="btn-active" data-id="@item.UserID"> @(item.Status ? "Khóa" : "Kích hoạt")</a></td>
+                                            <td style="min-width:120px">@(item.ModifiedDate.HasValue?item.ModifiedDate.Value.ToString("dd/mm/yyyy"):"")</td>
+
+                                            <td style="min-width:120px">
+                                                <a href="/Admin/User/Edit/@item.UserID">Sửa |</a>
+                                                @Ajax.ActionLink(" Xóa", "Delete", new { id = item.UserID }, new AjaxOptions { Confirm = "Bạn có muốn xóa  bản ghi này?", OnComplete = "$('#row_" + @item.UserID + "').remove()", HttpMethod = "Delete" })
+                                            </td>
+
+
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bordered table end -->
+
+
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchString = @ViewBag.searchStr }), new PagedListRenderOptions
+            {
+                /*Thêm một class 'pagination'  CSS vào thẻ ul, class  này trích  từ boottrap.3.4.1.
+                Tham khảo tài liệu tại website: https://www.w3schools.com/bootstrap/bootstrap_pagination.asp
+                Class này thiết kế kiểu cho pagiing...
+                */
+                UlElementClasses = new string[] { "pagination" },
+
+                /*Hiện thị số  trang tối đa trong một điều khiển phân  trang*/
+                MaximumPageNumbersToDisplay = 2,
+
+
+                /*Lớp CSS thiết kế thẻ chứa điều khiển phân trang.*/
+                ContainerDivClasses = new[] { "" },
+
+                /*Thêm một class  CSS vào thẻ li*/
+                LiElementClasses = new[] { "MyClassCss" },
+
+                /*Hiển thị trang hiện tại trong tổng số trang... Chọn true để hiện thị*/
+                DisplayPageCountAndCurrentLocation = false,
+                /*Hiển thị thiết kế riêng của trang hiện tại...*/
+                PageCountAndCurrentLocationFormat = "Trang {0} của {1}.",
+
+                /*Tham khảo một số tham số và giá trị mặc định của PagedListRenderOptions tại trang:
+                https://github.com/TroyGoode/PagedList/blob/master/src/PagedList.Mvc/PagedListRenderOptions.cs
+                */
+
+            })
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+

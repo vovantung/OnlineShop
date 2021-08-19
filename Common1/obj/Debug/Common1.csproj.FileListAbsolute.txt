@@ -1,0 +1,6 @@
+C:\Users\Vo Van Tung\Desktop\ASP.NET\OnlineShop__\Common1\bin\Debug\Common1.dll
+C:\Users\Vo Van Tung\Desktop\ASP.NET\OnlineShop__\Common1\bin\Debug\Common1.pdb
+C:\Users\Vo Van Tung\Desktop\ASP.NET\OnlineShop__\Common1\obj\Debug\Common1.csproj.CoreCompileInputs.cache
+C:\Users\Vo Van Tung\Desktop\ASP.NET\OnlineShop__\Common1\obj\Debug\Common1.dll
+C:\Users\Vo Van Tung\Desktop\ASP.NET\OnlineShop__\Common1\obj\Debug\Common1.pdb
+C:\Users\Vo Van Tung\Desktop\ASP.NET\OnlineShop__\Common1\obj\Debug\Common1.csproj.AssemblyReference.cache

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+	<item value="Đồng Tháp" type="province" id="111">
+		<item value="Cao Lãnh" type="district" id="111222">	
+		</item>
+		<item value="Tân Hồng" type="district" id="111223">
+		</item>
+		<item value="Tam Nông" type="district" id="111224">
+		</item>
+		<item value="Thanh Bình" type="district" id="111225">
+		</item>
+		<item value="Lấp Vò" type="district" id="111226">
+			<item value="Mỹ An Hưng A" type="commune" id="111226555">
+			</item>
+			<item value="Mỹ An Hưng B" type="commune" id="111226557">
+			</item>
+			<item value="Mỹ An Hưng A" type="commune" id="111226556">
+			</item>
+			<item value="Vĩnh Thạnh" type="commune" id="111226553">
+			</item>
+			<item value="Long Hưng A" type="commune" id="111226554">
+			</item>
+			<item value="Long Hưng B" type="commune" id="111226552">
+			</item>
+			<item value="Long Hậu" type="commune" id="111226551">
+			</item>
+		</item>
+
+		
+	</item>
+</root>

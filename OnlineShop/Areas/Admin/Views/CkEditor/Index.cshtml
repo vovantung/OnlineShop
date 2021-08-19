@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutMasterAdminLTE.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>A Simple Page with CKEditor 4</title>
+    <!-- Make sure the path to CKEditor is correct. -->
+    <script src="/Assets/admin/ckeditor/ckeditor.js"></script>
+    <script src="/Assets/admin/ckfinder/ckfinder.js"></script>
+
+
+
+</head>
+
+@section jsFooter{
+    <script>
+        $('#btImage').on('click', function (e) {
+
+            e.preventDefault();
+            var finder = new CKFinder();
+
+                finder.selectActionFunction = function (url) {
+                    $('#txtImage').val(url);
+                };
+            finder.popup();
+           
+
+        })
+
+    </script>
+}
+
+
+<body>
+    <form>
+        <div style="margin-bottom:15px">
+            <span>
+                <input type="text" id="txtImage" /><a href="#" style="margin-left:15px" id="btImage">Chọn ảnh</a>
+            </span>
+
+        </div>
+
+        <textarea name="editor1" id="editor1" rows="10" cols="80">
+                This is my textarea to be replaced with CKEditor 4.
+            </textarea>
+
+    </form>
+</body>
+
+</html>
+<script>
+    var editor = CKEDITOR.replace('editor1', { customConfig: '/Assets/admin/ckeditor/config.js' })
+
+</script>
+
